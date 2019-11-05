@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+/home/italo/git/ep2/.metadata/.plugins/org.eclipse.jdt.core

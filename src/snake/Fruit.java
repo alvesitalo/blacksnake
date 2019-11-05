@@ -2,40 +2,69 @@ package snake;
 
 import javax.swing.ImageIcon;
 
-import java.awt.Component;
-import java.awt.Graphics;
-
 import java.util.Random;
 
-public class Fruit {
-	private ImageIcon image;
-	private String type;
-	private int points = 1;
-	private int Xpos;
-	private int Ypos;
-	
-	public Fruit(Component c, Graphics g, int x, int y) {
-		Xpos = x;
-		Ypos = y;
-		image = new ImageIcon("src/assets/enemy.png");
-		image.paintIcon(c, g, Xpos, Ypos);
-	}
-	
-	private int [] enemyXpos = {75, 100, 125, 150, 175, 200, 225, 250, 300, 325, 350, 375, 400, 425, 450, 
-			475, 500, 525, 550, 575, 600, 625, 650, 675, 700, 725, 750, 775, 800, 825, 850};
-	private int [] enemyYpos = {75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 
-				475, 500, 525, 550, 575, 600, 625};
-	
+public class Fruit extends ImageIcon {
+	private String name;
+	private int size = 35;
+	private int points;
 	private Random random = new Random();
-	private int xpos = random.nextInt(34);
-	private int ypos = random.nextInt(23);
+	private int[] coordsX = new int[22];
+	private int[] coordsY = new int[14];
+	private int posX;
+	private int posY;
 	
-	if (enemyXpos[xpos] == snakeX[0] && enemyYpos[ypos] == snakeY[0]) {
-		score++;
-		lengthofsnake++;
-		xpos = random.nextInt(34);
-		ypos = random.nextInt(23);
+	public Fruit() {
+		super("assets/fruits/basic-fruit.png");
+		name = "basic";
+		points = 1;
+		initCoords();
+	}
+
+	public int getPoints() {
+		return points;
 	}
 	
+	public int getXPos() {
+		return posX;
+	}
+
+	public int getYPos() {
+		return posY;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public void initCoords() {
+		int left = 2;
+
+		for(int i = 0; i < 22; i++) {
+			coordsX[i] = size * left;
+			left++;
+		}
+
+		int top = 4;
+
+		for(int i = 0; i < 14; i++) {
+			coordsY[i] = size * top;
+			top++;
+		}
+	}
 	
+	public void randCoords(int[] snakeX, int[] snakeY, int snakeLength) {
+		/*
+		for(int i = 0; i < snakeLength; i++) {
+			if (posX == snakeX[i] && posY == snakeY[i]) {
+				System.out.println("Pos igual");
+			}
+		}
+		*/
+		int x = random.nextInt(22);
+		int y = random.nextInt(14);
+
+		posX = coordsX[x];
+		posY = coordsY[y];
+	}
 }
