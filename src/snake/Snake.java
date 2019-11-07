@@ -20,68 +20,80 @@ public class Snake {
 	protected boolean powerGainDoublePoints;
 	protected boolean powerCrossBoundaries;
 	protected boolean alive;
-	private int[] posX = new int[308];
-	private int[] posY = new int[308];
+	private int[] coordsX = new int[308];
+	private int[] coordsY = new int[308];
 	
-	private boolean left = false;
-	private boolean right = false;
-	private boolean up = false;
-	private boolean down = false;
+	protected boolean left = false;
+	protected boolean right = false;
+	protected boolean up = false;
+	protected boolean down = false;
 	
 	public Snake() {
 		name = "black";
+		resetLength();
 		powerHitWalls = false;
 		powerGainDoublePoints = false;
 		powerCrossBoundaries = false;
 		alive = true;
-		resetLength();
 		initPosition();
 	}
-	
-	public boolean canHitWalls() {
-		return powerHitWalls;
-	}
-	
-	public boolean canGainDoublePoints() {
-		return powerGainDoublePoints;
-	}
-	
-	public boolean canCrossBoundaries() {
-		return powerCrossBoundaries;
-	}
 
-	public int getXPos(int key) {
-		return posX[key];
-	}
-	
-	public int getYPos(int key) {
-		return posY[key];
-	}
-	
-	public int[] getXCoords() {
-		return posX;
-	}
-	
-	public int[] getYCoords() {
-		return posY;
-	}
-	
-	public void setXCoords(int[] posX) {
-		this.posX = posX;
-	}
-	
-	public void setYCoords(int[] posY) {
-		this.posY = posY;
+	public String getName() {
+		return name;
 	}
 
 	public int getLength() {
 		return this.length;
 	}
-	
-	public void setLength(int length) {
-		this.length = length;
+
+	public boolean canHitWalls() {
+		return this.powerHitWalls;
 	}
 	
+	public boolean canGainDoublePoints() {
+		return this.powerGainDoublePoints;
+	}
+	
+	public boolean canCrossBoundaries() {
+		return this.powerCrossBoundaries;
+	}
+
+	public boolean isAlive() {
+		return this.alive;
+	}
+	
+	public int[] getXCoords() {
+		return coordsX;
+	}
+	
+	public int[] getYCoords() {
+		return coordsY;
+	}
+	
+	public int getXPos(int key) {
+		return coordsX[key];
+	}
+	
+	public int getYPos(int key) {
+		return coordsY[key];
+	}
+
+	public boolean isLeft() {
+		return this.left;
+	}
+
+	public boolean isRight() {
+		return this.right;
+	}
+
+	public boolean isUp() {
+		return this.up;
+	}
+
+	public boolean isDown() {
+		return this.down;
+	}
+
 	public void resetLength() {
 		this.length = 3;
 	}
@@ -90,12 +102,20 @@ public class Snake {
 		this.length++;
 	}
 
+	public void setXCoords(int[] coordsX) {
+		this.coordsX = coordsX;
+	}
+	
+	public void setYCoords(int[] coordsY) {
+		this.coordsY = coordsY;
+	}
+
 	public void initPosition() {
 		int pos = 2;
-		for (int i = 0; i < this.length; i++) {
-			posX[i] = bodySize * pos;
-			posY[i] = bodySize * 4;
-			pos *= 2;
+		for (int i = this.length - 1; i >= 0; i--) {
+			coordsX[i] = bodySize * pos;
+			coordsY[i] = bodySize * 4;
+			pos++;
 		}
 
 		right = true;
@@ -173,19 +193,19 @@ public class Snake {
 	public void updatePosition() {
 		if (left) {
 			for (int i = this.length; i >= 0; i--) {
-				posY[i+1] = posY[i];
+				coordsY[i+1] = coordsY[i];
 			}
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
-					posX[i] = posX[i] - bodySize;
+					coordsX[i] = coordsX[i] - bodySize;
 				}
 				else {
-					posX[i] = posX[i-1];
+					coordsX[i] = coordsX[i-1];
 				}
 				
-				if (posX[i] < GameWindow.boundary[0]) {
+				if (coordsX[i] < GameWindow.boundary[0]) {
 					if (powerCrossBoundaries) {
-						posX[i] = GameWindow.boundary[1];
+						coordsX[i] = GameWindow.boundary[1];
 					}
 					else {
 						alive = false;
@@ -195,19 +215,19 @@ public class Snake {
 		}
 		else if (right) {
 			for (int i = this.length; i >= 0; i--) {
-				posY[i+1] = posY[i];
+				coordsY[i+1] = coordsY[i];
 			}
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
-					posX[i] = posX[i] + bodySize;
+					coordsX[i] = coordsX[i] + bodySize;
 				}
 				else {
-					posX[i] = posX[i-1];
+					coordsX[i] = coordsX[i-1];
 				}
 				
-				if (posX[i] > GameWindow.boundary[1]) {
+				if (coordsX[i] > GameWindow.boundary[1]) {
 					if (powerCrossBoundaries) {
-						posX[i] = GameWindow.boundary[0];
+						coordsX[i] = GameWindow.boundary[0];
 					}
 					else {
 						alive = false;
@@ -217,19 +237,19 @@ public class Snake {
 		}
 		else if (up) {
 			for (int i = this.length; i >= 0; i--) {
-				posX[i+1] = posX[i];
+				coordsX[i+1] = coordsX[i];
 			}
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
-					posY[i] = posY[i] - bodySize;
+					coordsY[i] = coordsY[i] - bodySize;
 				}
 				else {
-					posY[i] = posY[i-1];
+					coordsY[i] = coordsY[i-1];
 				}
 				
-				if (posY[i] < GameWindow.boundary[2]) {
+				if (coordsY[i] < GameWindow.boundary[2]) {
 					if (powerCrossBoundaries) {
-						posY[i] = GameWindow.boundary[3];
+						coordsY[i] = GameWindow.boundary[3];
 					}
 					else {
 						alive = false;
@@ -239,19 +259,19 @@ public class Snake {
 		}
 		else if (down) {
 			for (int i = this.length; i >= 0; i--) {
-				posX[i+1] = posX[i];
+				coordsX[i+1] = coordsX[i];
 			}
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
-					posY[i] = posY[i] + bodySize;
+					coordsY[i] = coordsY[i] + bodySize;
 				}
 				else {
-					posY[i] = posY[i-1];
+					coordsY[i] = coordsY[i-1];
 				}
 				
-				if (posY[i] > GameWindow.boundary[3]) {
+				if (coordsY[i] > GameWindow.boundary[3]) {
 					if (powerCrossBoundaries) {
-						posY[i] = GameWindow.boundary[2];
+						coordsY[i] = GameWindow.boundary[2];
 					}
 					else {
 						alive = false;
@@ -265,24 +285,24 @@ public class Snake {
 		for (int i = 0; i < this.length; i++) {
 			if (i == 0 && left) {
 				faceLeft = new ImageIcon("assets/snakes/" + name + "-face-left.png");
-				faceLeft.paintIcon(c, g, posX[i], posY[i]);
+				faceLeft.paintIcon(c, g, coordsX[i], coordsY[i]);
 			}
 			else if (i == 0 && right) {
 				faceRight = new ImageIcon("assets/snakes/" + name + "-face-right.png");
-				faceRight.paintIcon(c, g, posX[i], posY[i]);
+				faceRight.paintIcon(c, g, coordsX[i], coordsY[i]);
 			}
 			else if (i == 0 && up) {
 				faceUp = new ImageIcon("assets/snakes/" + name + "-face-up.png");
-				faceUp.paintIcon(c, g, posX[i], posY[i]);
+				faceUp.paintIcon(c, g, coordsX[i], coordsY[i]);
 			}
 			else if (i == 0 && down) {
 				faceDown = new ImageIcon("assets/snakes/" + name + "-face-down.png");
-				faceDown.paintIcon(c, g, posX[i], posY[i]);
+				faceDown.paintIcon(c, g, coordsX[i], coordsY[i]);
 			}
 
 			if (i != 0) {
 				body = new ImageIcon("assets/snakes/" + name + "-body.png");
-				body.paintIcon(c, g, posX[i], posY[i]);
+				body.paintIcon(c, g, coordsX[i], coordsY[i]);
 			}
 		}
 	}

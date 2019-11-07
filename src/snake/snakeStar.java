@@ -1,7 +1,7 @@
 package snake;
 
-public class Star extends Snake {
-	public Star() {
+public class snakeStar extends Snake {
+	public snakeStar(Snake s) {
 		name = "star";
 		powerHitWalls = true;
 		powerGainDoublePoints = true;

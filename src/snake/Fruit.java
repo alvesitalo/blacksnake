@@ -19,6 +19,7 @@ public class Fruit extends ImageIcon {
 		name = "basic";
 		points = 1;
 		initCoords();
+		randCoords();
 	}
 
 	public int getPoints() {
@@ -53,14 +54,7 @@ public class Fruit extends ImageIcon {
 		}
 	}
 	
-	public void randCoords(int[] snakeX, int[] snakeY, int snakeLength) {
-		/*
-		for(int i = 0; i < snakeLength; i++) {
-			if (posX == snakeX[i] && posY == snakeY[i]) {
-				System.out.println("Pos igual");
-			}
-		}
-		*/
+	public void randCoords() {
 		int x = random.nextInt(22);
 		int y = random.nextInt(14);
 
