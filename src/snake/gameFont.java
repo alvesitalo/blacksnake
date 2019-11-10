@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class gameFont {
+	public gameFont() {
+	}
+
 	public gameFont(String pathname) {
 		try {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

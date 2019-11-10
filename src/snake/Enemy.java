@@ -7,31 +7,21 @@ import java.awt.Graphics;
 
 import java.util.Random;
 
-public class Fruit {
-	protected ImageIcon icon;
-	protected String name;
+public class Enemy {
+    private ImageIcon icon;
+    private String name;
 	private int size = 35;
-	protected int points;
 	private Random random = new Random();
 	private int[] coordsX = new int[22];
 	private int[] coordsY = new int[14];
 	private int posX;
 	private int posY;
 	
-	public Fruit() {
-		name = "simple";
+	public Enemy(String name) {
+        this.name = name;
 		setIcon();
-		points = 2;
 		initCoords();
 		randCoords();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getPoints() {
-		return points;
 	}
 	
 	public int getXPos() {
@@ -43,11 +33,7 @@ public class Fruit {
 	}
 
 	public void setIcon() {
-		icon = new ImageIcon("assets/fruits/" + name + "-fruit.png");
-	}
-
-	public void setPoints(int points) {
-		this.points = points;
+		icon = new ImageIcon("assets/enemies/" + name + ".png");
 	}
 
 	public void initCoords() {
@@ -82,7 +68,8 @@ public class Fruit {
 		posY = y;
 	}
 
-	public void showFruit(Component c, Graphics g) {
+	public void showEnemy(Component c, Graphics g) {
 		icon.paintIcon(c, g, posX, posY);
 	}
 }
+

@@ -1,12 +1,12 @@
 package snake;
 
-public class snakeKitty extends Snake {
-	public snakeKitty(Snake s) {
+public class kittySnake extends Snake {
+	public kittySnake(Snake s) {
 		name = "kitty";
 		length = s.getLength();
-		powerHitWalls = true;
+		powerHitEnemies = true;
 		powerGainDoublePoints = false;
-		powerCrossBoundaries = true;
+		powerCrossBoundaries = false;
 		alive = true;
 
 		initPosition(s.getXCoords(), s.getYCoords());

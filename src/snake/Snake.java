@@ -16,7 +16,7 @@ public class Snake {
 	protected String name;
 	private int bodySize = 35;
 	protected int length;
-	protected boolean powerHitWalls;
+	protected boolean powerHitEnemies;
 	protected boolean powerGainDoublePoints;
 	protected boolean powerCrossBoundaries;
 	protected boolean alive;
@@ -31,7 +31,7 @@ public class Snake {
 	public Snake() {
 		name = "black";
 		resetLength();
-		powerHitWalls = false;
+		powerHitEnemies = false;
 		powerGainDoublePoints = false;
 		powerCrossBoundaries = false;
 		alive = true;
@@ -46,8 +46,8 @@ public class Snake {
 		return this.length;
 	}
 
-	public boolean canHitWalls() {
-		return this.powerHitWalls;
+	public boolean canHitEnemies() {
+		return this.powerHitEnemies;
 	}
 	
 	public boolean canGainDoublePoints() {
@@ -100,6 +100,10 @@ public class Snake {
 	
 	public void increaseLength() {
 		this.length++;
+	}
+
+	public void die() {
+		this.alive = false;
 	}
 
 	public void setXCoords(int[] coordsX) {
@@ -204,12 +208,10 @@ public class Snake {
 				}
 				
 				if (coordsX[i] < GameWindow.boundary[0]) {
-					if (powerCrossBoundaries) {
-						coordsX[i] = GameWindow.boundary[1];
-					}
-					else {
+					if (!powerCrossBoundaries) {
 						alive = false;
 					}
+					coordsX[i] = GameWindow.boundary[1];
 				}
 			}
 		}
@@ -226,12 +228,10 @@ public class Snake {
 				}
 				
 				if (coordsX[i] > GameWindow.boundary[1]) {
-					if (powerCrossBoundaries) {
-						coordsX[i] = GameWindow.boundary[0];
-					}
-					else {
+					if (!powerCrossBoundaries) {
 						alive = false;
 					}
+					coordsX[i] = GameWindow.boundary[0];
 				}
 			}
 		}
@@ -248,12 +248,10 @@ public class Snake {
 				}
 				
 				if (coordsY[i] < GameWindow.boundary[2]) {
-					if (powerCrossBoundaries) {
-						coordsY[i] = GameWindow.boundary[3];
-					}
-					else {
+					if (!powerCrossBoundaries) {
 						alive = false;
 					}
+					coordsY[i] = GameWindow.boundary[3];
 				}
 			}
 		}
@@ -270,12 +268,10 @@ public class Snake {
 				}
 				
 				if (coordsY[i] > GameWindow.boundary[3]) {
-					if (powerCrossBoundaries) {
-						coordsY[i] = GameWindow.boundary[2];
-					}
-					else {
+					if (!powerCrossBoundaries) {
 						alive = false;
 					}
+					coordsY[i] = GameWindow.boundary[2];
 				}
 			}
 		}
