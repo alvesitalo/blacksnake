@@ -29,11 +29,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	private ImageIcon gameArea;
 
 	private int gridSize = 35;
-	public static int width = 910;
-	public static int height = 710;
+	public static int width = 925; // 910
+	public static int height = 730; // 700
 	public static int[] boundary = new int[4];
 	
 	private Random random = new Random();
+	private String playerName;
 	private gameFile file = new gameFile();
 	private int delay;
 	private int score;
@@ -41,13 +42,14 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 	private boolean running;
 	private boolean menu;
+	private boolean menuHighScores;
 	private boolean gameWindow;
 	private boolean gameOver;
-	private boolean openPopup = false;
+	private boolean openPopup;
 	
 	public GameWindow() {
-		running = true;
 		menu = true;
+		menuHighScores = false;
 		gameWindow = false;
 		gameOver = false;
 		initItems();
@@ -75,6 +77,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
     }
 	
 	private void initItems() {
+		running = true;
 		scoreIcon = new ImageIcon("assets/game/score-icon.png");
 		hiscoreIcon = new ImageIcon("assets/game/highscore-icon.png");
 		gameArea = new ImageIcon("assets/game/game-frame.png");
@@ -101,6 +104,10 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 		if (menu) {
 			new Menu().show(this, g2);
+		}
+		
+		if (menuHighScores) {
+			new MenuHighScores(file).show(this, g2);
 		}
 
 		if (gameWindow) {
@@ -150,7 +157,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						String name = JOptionPane.showInputDialog(null, "Insert your name:", "Player", JOptionPane.QUESTION_MESSAGE);        
+						if (playerName == null)
+						playerName = JOptionPane.showInputDialog(null, "Insert your name:", 
+									 "Player", JOptionPane.QUESTION_MESSAGE);
+						
+						if (playerName != null)
+						file.addPlayer(playerName, score);
 					}
 				});
 			}
@@ -163,14 +175,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g2.dispose();
 	}
 
-	private void initGameGUI(Graphics2D g2) {	
-		// Background
+	private void initGameGUI(Graphics2D g2) {
 		g2.setColor(Color.white);
 		g2.fillRect(0, 0, width, height);
 		
 		g2.setColor(Color.black);
-		
-		// Score and High Score
+
 		new gameFont("assets/fonts/Mops.ttf");
 		g2.setFont(new Font("Mops", Font.PLAIN, 65));
 
@@ -178,14 +188,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g2.drawString("" + score, 125, 60 + gridSize);
 
 		hiscoreIcon.paintIcon(this, g2, 780, 50);
-		g2.drawString("" + highscore, 705, 60 + gridSize);
+		g2.drawString("" + highscore, 700, 60 + gridSize);
 
-		// Snake name
 		new gameFont("assets/fonts/bradley-gratis.ttf");
 		g2.setFont(new Font("Bradley Gratis", Font.PLAIN, 70));
 		g2.drawString(snake.getName(), 400, 50 + (gridSize + 10));
 
-		// Game area frame
 		gameArea.paintIcon(this, g2, boundary[0] - 5, boundary[2] - 5);
 	}
 
@@ -274,15 +282,39 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER && menu) {
 			menu = false;
+			menuHighScores = false;
 			gameWindow = true;
 			gameOver = false;
 			initWorld();
 		}
+		
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && menu) {
+			menu = false;
+			menuHighScores = true;
+			gameWindow = false;
+			gameOver = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_ENTER && menuHighScores) {
+			menu = true;
+			menuHighScores = false;
+			gameWindow = false;
+			gameOver = false;
+		}
 
 		if (e.getKeyCode() == KeyEvent.VK_ENTER && gameOver) {
 			menu = true;
+			menuHighScores = false;
 			gameWindow = false;
 			gameOver = false;
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && gameOver) {
+			menu = false;
+			menuHighScores = false;
+			gameWindow = true;
+			gameOver = false;
+			initWorld();
 		}
 
 		snake.updateWalking(e.getKeyCode());

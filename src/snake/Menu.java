@@ -13,6 +13,7 @@ public class Menu {
 	private ImageIcon logo;
 	private String phrase;
 	private String phrase2;
+	
 	private Font font1;
 	private Font font2;
 	private int width;
@@ -38,15 +39,15 @@ public class Menu {
 		int a = new gameFont("assets/fonts/bradley-gratis.ttf").getMetrics(g, font1);
 		g.setFont(font1);
 		g.drawString(title, 140, 105 + (a - 12));
-		logo.paintIcon(c, g, 180, 305); //310
+		logo.paintIcon(c, g, 180, 300);
 
 		font2 = new Font("Mops", Font.PLAIN, 60);
 		int b = new gameFont("assets/fonts/Mops.ttf").getMetrics(g, font2);
 		g.setFont(font2);
-		g.drawString(subtitle, 415, 30 + (b - 12));
+		g.drawString(subtitle, 410, 30 + (b - 12));
 
 		g.setFont(new Font("Mops", Font.PLAIN, 48));
-		g.drawString(phrase, 335, 575 + (b - 12)); //575
+		g.drawString(phrase, 335, 570 + (b - 12));
 		g.drawString(phrase2, 260, 610 + (b - 12));
 	}
 }
