@@ -3,6 +3,7 @@ package snake;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,9 +34,10 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	public static int[] boundary = new int[4];
 	
 	private Random random = new Random();
+	private gameFile file = new gameFile();
 	private int delay;
 	private int score;
-	private int highscore = 0;
+	private int highscore;
 
 	private boolean running;
 	private boolean menu;
@@ -90,6 +92,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		food2 = null;
 		delay = 180;
 		score = 0;
+		highscore = file.getHighScore();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -143,15 +146,21 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 			
 			if (!openPopup) {
 				openPopup = true;
-				JOptionPane.showInputDialog(getParent(), "Insert your name:", "Game Over", JOptionPane.QUESTION_MESSAGE);
+				
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						String name = JOptionPane.showInputDialog(null, "Insert your name:", "Player", JOptionPane.QUESTION_MESSAGE);        
+					}
+				});
 			}
 		}
 		else {
 			openPopup = false;
 		}
-
-		g2.dispose();
+		
 		Toolkit.getDefaultToolkit().sync();
+		g2.dispose();
 	}
 
 	private void initGameGUI(Graphics2D g2) {	
@@ -169,7 +178,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g2.drawString("" + score, 125, 60 + gridSize);
 
 		hiscoreIcon.paintIcon(this, g2, 780, 50);
-		g2.drawString("" + snake.getLength(), 705, 60 + gridSize);
+		g2.drawString("" + highscore, 705, 60 + gridSize);
 
 		// Snake name
 		new gameFont("assets/fonts/bradley-gratis.ttf");
@@ -188,7 +197,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 				}
 			}
 
-			if (score >= 30 && enemies_num <= 10) {
+			if (score >= 30 && enemies_num < 10) {
 				if (score % 3 == 0) {
 					enemies[enemies_num] = new Enemy("spike");
 					enemies_num++;
@@ -283,5 +292,5 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	public void keyReleased(KeyEvent e) {}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {}
+	public void keyTyped(KeyEvent e) {}
 }
