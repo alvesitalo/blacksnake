@@ -13,14 +13,12 @@ public class Menu {
 	private ImageIcon logo;
 	private String phrase;
 	private String phrase2;
-	private int width;
-	private int height;
 	private Font font1;
 	private Font font2;
-	public boolean startGame;
+	private int width;
+	private int height;
 
 	public Menu() {
-		startGame = false;
 		subtitle = "the";
 		title = "blacksnake";
 		logo = new ImageIcon("assets/game/snake-logo.png");
@@ -50,7 +48,5 @@ public class Menu {
 		g.setFont(new Font("Mops", Font.PLAIN, 48));
 		g.drawString(phrase, 335, 575 + (b - 12)); //575
 		g.drawString(phrase2, 260, 610 + (b - 12));
-
-		g.dispose();
 	}
 }

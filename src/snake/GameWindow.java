@@ -1,10 +1,9 @@
 package snake;
 
-import java.awt.Canvas;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,18 +12,19 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import java.util.Random;
 
-public class GameWindow extends Canvas implements KeyListener, ActionListener, Runnable {
+public class GameWindow extends JPanel implements KeyListener, ActionListener, Runnable {
 	private Snake snake;
-	private Enemy[] enemies = new Enemy[10];
-	private int enemies_num = 0;
+	private Enemy[] enemies;
+	private int enemies_num;
 	private Fruit food;
 	private Fruit food2;
 
 	private ImageIcon scoreIcon;
-	private ImageIcon hiScoreIcon;
+	private ImageIcon hiscoreIcon;
 	private ImageIcon gameArea;
 
 	private int gridSize = 35;
@@ -33,13 +33,15 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 	public static int[] boundary = new int[4];
 	
 	private Random random = new Random();
-	private int delay = 180;
-	private int score = 0;
+	private int delay;
+	private int score;
+	private int highscore = 0;
 
 	private boolean running;
 	private boolean menu;
 	private boolean gameWindow;
 	private boolean gameOver;
+	private boolean openPopup = false;
 	
 	public GameWindow() {
 		running = true;
@@ -47,9 +49,11 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 		gameWindow = false;
 		gameOver = false;
 		initItems();
+		initWorld();
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
+		setDoubleBuffered(true);
 		new Thread(this).start();
 	}
 
@@ -59,6 +63,7 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 			try {
 				Thread.sleep(delay);
 				snake.updatePosition();
+				collisionWithFruitsEvents();
 				repaint();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -69,50 +74,34 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 	
 	private void initItems() {
 		scoreIcon = new ImageIcon("assets/game/score-icon.png");
-		hiScoreIcon = new ImageIcon("assets/game/highscore-icon.png");
+		hiscoreIcon = new ImageIcon("assets/game/highscore-icon.png");
 		gameArea = new ImageIcon("assets/game/game-frame.png");
 		boundary[0] = 70;
 		boundary[1] = boundary[0] + (gameArea.getIconWidth() - 10) - gridSize;
 		boundary[2] = 140;
 		boundary[3] = boundary[2] + (gameArea.getIconHeight() - 10) - gridSize;
-		snake = new Snake();
-		food = new Fruit();
-	}
-
-	public void update(Graphics g) {
-		Graphics offgc;
-		Image offscreen = null;
-
-		offscreen = createImage(width, height);
-		offgc = offscreen.getGraphics();
-
-		offgc.setColor(getBackground());
-		offgc.fillRect(0, 0, width, height);
-		offgc.setColor(getForeground());
-
-		paint(offgc);
-		
-		g.drawImage(offscreen, 0, 0, this);
 	}
 	
-	public void paint(Graphics g) {
+	private void initWorld() {
+		snake = new Snake();
+		enemies = new Enemy[10];
+		enemies_num = 0;
+		food = new Fruit();
+		food2 = null;
+		delay = 180;
+		score = 0;
+	}
+	
+	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		new gameGraphics(g2);
 
 		if (menu) {
-			snake.stopWalking();
 			new Menu().show(this, g2);
 		}
 
 		if (gameWindow) {
 			initGameGUI(g2);
-			
-			if (collisionSnakeFruit(food) || collisionSnakeFruit(food2)) {
-				if (enemies_num < 10) {
-					enemies[enemies_num] = new Enemy("spike");
-					enemies_num++;
-				}
-			}
 
 			for (int a = 0; a < enemies_num; a++) {
 				if (enemies[a].getXPos() == snake.getXPos(0) && enemies[a].getYPos() == snake.getYPos(0)) {
@@ -134,6 +123,12 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 				snake.stopWalking();
 				gameWindow = false;
 				gameOver = true;
+
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			
 			if (food2 != null)
@@ -144,12 +139,19 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 		}
 
 		if (gameOver) {
-			menu = true;
-			gameWindow = false;
-			new Menu().show(this, g2);
+			new GameOver(score, highscore).show(this, g2);
+			
+			if (!openPopup) {
+				openPopup = true;
+				JOptionPane.showInputDialog(getParent(), "Insert your name:", "Game Over", JOptionPane.QUESTION_MESSAGE);
+			}
+		}
+		else {
+			openPopup = false;
 		}
 
 		g2.dispose();
+		Toolkit.getDefaultToolkit().sync();
 	}
 
 	private void initGameGUI(Graphics2D g2) {	
@@ -157,15 +159,16 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 		g2.setColor(Color.white);
 		g2.fillRect(0, 0, width, height);
 		
+		g2.setColor(Color.black);
+		
 		// Score and High Score
 		new gameFont("assets/fonts/Mops.ttf");
-		g2.setColor(Color.black);
 		g2.setFont(new Font("Mops", Font.PLAIN, 65));
 
 		scoreIcon.paintIcon(this, g2, gridSize * 2, 50);
 		g2.drawString("" + score, 125, 60 + gridSize);
 
-		hiScoreIcon.paintIcon(this, g2, 780, 50);
+		hiscoreIcon.paintIcon(this, g2, 780, 50);
 		g2.drawString("" + snake.getLength(), 705, 60 + gridSize);
 
 		// Snake name
@@ -176,8 +179,25 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 		// Game area frame
 		gameArea.paintIcon(this, g2, boundary[0] - 5, boundary[2] - 5);
 	}
+
+	private void collisionWithFruitsEvents() {
+		if (snakeHitFruit(food) || snakeHitFruit(food2)) {
+			if (score >= 15) {
+				if (score % 3 == 0 && delay > 80) {
+					delay -= 10;
+				}
+			}
+
+			if (score >= 30 && enemies_num <= 10) {
+				if (score % 3 == 0) {
+					enemies[enemies_num] = new Enemy("spike");
+					enemies_num++;
+				}
+			}
+		}
+	}
 	
-	private boolean collisionSnakeFruit(Fruit fruit) {
+	private boolean snakeHitFruit(Fruit fruit) {
 		if (fruit != null) {
 			if (fruit.getXPos() == snake.getXPos(0) && fruit.getYPos() == snake.getYPos(0)) {
 				if (fruit.getName() == "bomb") {
@@ -198,15 +218,10 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 					score += fruit.getPoints();
 				}
 				
-				randFruits();
+				if (fruit.getName() != "decrease")
 				snake.increaseLength();
 				
-				if (score >= 15) {
-					if (score % 3 == 0 && delay > 80) {
-						delay -= 10;
-					}
-				}
-				
+				randFruits();
 				return true;
 			}
 		}
@@ -243,7 +258,6 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		snake.updatePosition();
 		repaint();
 	}
 
@@ -253,12 +267,13 @@ public class GameWindow extends Canvas implements KeyListener, ActionListener, R
 			menu = false;
 			gameWindow = true;
 			gameOver = false;
+			initWorld();
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && !snake.isAlive()) {
-			snake = new Snake();
-			score = 0;
-			repaint();
+		if (e.getKeyCode() == KeyEvent.VK_ENTER && gameOver) {
+			menu = true;
+			gameWindow = false;
+			gameOver = false;
 		}
 
 		snake.updateWalking(e.getKeyCode());

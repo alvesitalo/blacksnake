@@ -1,9 +1,6 @@
 package snake;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-
-import java.awt.Dimension;
 
 public class Game {
 	private JFrame window;
