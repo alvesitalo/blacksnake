@@ -1,12 +1,12 @@
 # Blacksnake
 
-Blacksnake é um remake do jogo *Snake* feito em Java Swing, possui um painel de HighScore, mais 2 tipos de cobras jogáveis e mais 3 tipos frutas para coletar.
+Blacksnake é um remake do jogo *Snake* feito em Java Swing, possui um painel de HighScore, com 3 tipos de cobras jogáveis e mais 4 tipos de frutas para coletar.
 
 ## Jogabilidade
 
-Comandos são mostrados em todas as telas para a navegação com as teclas Espaço e Enter.
-No jogo, a Snake atual vai aumentando sua velocidade progressivamente de acordo com a pontuação, inimigos estáticos podem aparecer.
-A parte superior possui a pontuação atual do jogador e a pontuação mais alta já atingida (HighScore).
+Comandos são mostrados em todas as telas para a navegação com as teclas Espaço e Enter.  
+No jogo, a Snake atual vai aumentando sua velocidade progressivamente de acordo com a pontuação, inimigos estáticos podem aparecer.  
+A parte superior possui a pontuação atual do jogador e a pontuação mais alta já atingida (HighScore).  
 No fim do jogo, digite seu nome e a pontuação será acrescentada ao painel de HighScores.
 
 - Frutas coletáveis:
@@ -27,12 +27,12 @@ dobro de pontos, mas não pode colidir com um inimigo.
 
 - Java SE JDK 11.0.4 ou [superior](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). 
 
-Verifique sua versão do Java e da JVM no terminal com o comando:
+Verifique sua versão do Java e da JVM no terminal com o comando:  
 ```java --version```
 
 ## Jogar
 
-1. Na pasta ep2, digite o seguinte comando no terminal:
+1. Na pasta ep2, digite o seguinte comando no terminal:  
 ```java -cp bin snake.Game```
 
 2. Após abrir a janela, no menu, tecle Enter para iniciar o jogo
@@ -43,7 +43,7 @@ Caso algum arquivo seja modificado é necessário compilar o jogo novamente.
 
 ## Como compilar
 
-No terminal, entre com o comando abaixo na pasta ep2:
+No terminal, entre com o comando abaixo na pasta ep2:  
 ```javac -d bin/ src/snake/*.java```
 
 Se tudo ocorrer bem, nenhuma mensagem será retornada.
