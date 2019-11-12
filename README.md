@@ -1,28 +1,52 @@
-# Snake da Carla
+# Blacksnake
 
-Essse projeto bla bla oo, oaoa
+Blacksnake é um remake do jogo *Snake* feito em Java Swing, possui um painel de HighScore, mais 2 tipos de cobras jogáveis e mais 3 tipos frutas para coletar.
 
-tem as seguintes funionalidades:
+## Jogabilidade
 
-- Implementado as snakes **comum** e **kitty**
-- Implementado a fruta simples
+Comandos são mostrados em todas as telas para a navegação com as teclas Espaço e Enter.
+No jogo, a Snake atual vai aumentando sua velocidade progressivamente de acordo com a pontuação, inimigos estáticos podem aparecer.
+A parte superior possui a pontuação atual do jogador e a pontuação mais alta já atingida (HighScore).
+No fim do jogo, digite seu nome e a pontuação será acrescentada ao painel de HighScores.
 
+- Frutas coletáveis:
 
-# Como Jogar
+1. **Apple Fruit:** Uma maçã simples, a preferida da Black.
+2. **Bomb Fruit:** Pimenta para uma cobra? Qualquer Snake morre se encostar.
+3. **Big Fruit:** Comum, a Kitty dá as caras e mostra seu poder.
+4. **Decrease Fruit:** A mais rara de ser encontrada, nela a BlackSnake se tranforma na Star.
 
-1. Entre na pasta bin
-2. Execute o programa (tenha um virtual machine java instalado)
-3. Comandos
+- Cobras jogáveis:
 
-# Como compilar
+1. **Black:** Não tem poderes especiais, mas a reputação dela é sempre boa.
+2. **Kitty:** Kitty pode colidir com qualquer inimigo e é fofa.  
+3. **Star:** Poderosíssima como a espada de uma samurai, a cobra Star pode atravessar as bordas do jogo (e se teletransportar para o outro lado) e ganhar o 
+dobro de pontos, mas não pode colidir com um inimigo.
 
-No terminal
+## Requisitos
 
-```javac Nomeprograma.java```
+- Java SE JDK 11.0.4 ou [superior](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). 
 
-executar
+Verifique sua versão do Java e da JVM no terminal com o comando:
+```java --version```
 
-```NomePrograma```
+## Jogar
+
+1. Na pasta ep2, digite o seguinte comando no terminal:
+```java -cp bin snake.Game```
+
+2. Após abrir a janela, no menu, tecle Enter para iniciar o jogo
+3. Use as setas direcionais do teclado para mover a BlackSnake
+4. Em Game Over, tecle Enter para voltar ao menu ou Espaço para jogar outra vez.
+
+Caso algum arquivo seja modificado é necessário compilar o jogo novamente.
+
+## Como compilar
+
+No terminal, entre com o comando abaixo na pasta ep2:
+```javac -d bin/ src/snake/*.java```
+
+Se tudo ocorrer bem, nenhuma mensagem será retornada.
 
 
 # EP2 - OO 2019.2 (UnB - Gama)

@@ -41,17 +41,11 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	private int highscore;
 
 	private boolean running;
-	private boolean menu;
-	private boolean menuHighScores;
-	private boolean gameWindow;
-	private boolean gameOver;
 	private boolean openPopup;
+	private State state;
 	
 	public GameWindow() {
-		menu = true;
-		menuHighScores = false;
-		gameWindow = false;
-		gameOver = false;
+		state = State.Menu;
 		initItems();
 		initWorld();
 		addKeyListener(this);
@@ -74,7 +68,14 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 				return;
 			}
 		}
-    }
+	}
+
+	private enum State {
+		Menu,
+		Highscore,
+		Game,
+		GameOver;
+	}
 	
 	private void initItems() {
 		running = true;
@@ -102,15 +103,15 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		Graphics2D g2 = (Graphics2D) g;
 		new gameGraphics(g2);
 
-		if (menu) {
+		if (state == State.Menu) {
 			new Menu().show(this, g2);
 		}
 		
-		if (menuHighScores) {
+		if (state == State.Highscore) {
 			new MenuHighScores(file).show(this, g2);
 		}
 
-		if (gameWindow) {
+		if (state == State.Game) {
 			initGameGUI(g2);
 
 			for (int a = 0; a < enemies_num; a++) {
@@ -131,8 +132,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 			if (!snake.isAlive()) {
 				snake.stopWalking();
-				gameWindow = false;
-				gameOver = true;
+				state = State.GameOver;
 
 				try {
 					Thread.sleep(1500);
@@ -148,7 +148,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 			snake.updateSprites(this, g2);
 		}
 
-		if (gameOver) {
+		if (state == State.GameOver) {
 			new GameOver(score, highscore).show(this, g2);
 			
 			if (!openPopup) {
@@ -280,40 +280,27 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ENTER && menu) {
-			menu = false;
-			menuHighScores = false;
-			gameWindow = true;
-			gameOver = false;
+		int keycode = e.getKeyCode();
+
+		if (keycode == KeyEvent.VK_ENTER && state == State.Menu) {
+			state = State.Game;
 			initWorld();
 		}
 		
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && menu) {
-			menu = false;
-			menuHighScores = true;
-			gameWindow = false;
-			gameOver = false;
+		if (keycode == KeyEvent.VK_SPACE && state == State.Menu) {
+			state = State.Highscore;
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_ENTER && menuHighScores) {
-			menu = true;
-			menuHighScores = false;
-			gameWindow = false;
-			gameOver = false;
+		if (keycode == KeyEvent.VK_ENTER && state == State.Highscore) {
+			state = State.Menu;
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_ENTER && gameOver) {
-			menu = true;
-			menuHighScores = false;
-			gameWindow = false;
-			gameOver = false;
+		if (keycode == KeyEvent.VK_ENTER && state == State.GameOver) {
+			state = State.Menu;
 		}
 
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && gameOver) {
-			menu = false;
-			menuHighScores = false;
-			gameWindow = true;
-			gameOver = false;
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && state == State.GameOver) {
+			state = State.Game;
 			initWorld();
 		}
 
