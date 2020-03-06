@@ -25,10 +25,10 @@ dobro de pontos, mas não pode colidir com um inimigo.
 
 ## Requisitos
 
-- Java SE JDK 11.0.4 ou [superior](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). 
+- Java SE 8 (1.8.0) ou [superior](https://www.java.com/inc/BrowserRedirect1.jsp?locale=pt_BR). 
 
 Verifique sua versão do Java e da JVM no terminal com o comando:  
-```java --version```
+```java -version```
 
 ## Jogar
 
@@ -47,6 +47,10 @@ No terminal, entre com o comando abaixo na pasta ep2:
 ```javac -d bin/ src/snake/*.java```
 
 Se tudo ocorrer bem, nenhuma mensagem será retornada.
+
+## Créditos
+
+Frutas e outros ícones [FontAwesome](https://fontawesome.com/)
 
 
 # EP2 - OO 2019.2 (UnB - Gama)
