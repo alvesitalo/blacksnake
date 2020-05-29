@@ -33,16 +33,16 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	public static int height = 730; // 700
 	public static int[] boundary = new int[4];
 	
-	private Random random = new Random();
+	private gameFile file;
 	private String playerName;
-	private gameFile file = new gameFile();
 	private int delay;
 	private int score;
 	private int highscore;
 
 	private boolean running;
-	private boolean openPopup;
 	private State screen;
+	private boolean openPopup;
+	private Random random = new Random();
 	
 	public GameWindow() {
 		screen = State.Menu;
@@ -89,6 +89,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	}
 	
 	private void initWorld() {
+		file = new gameFile();
 		snake = new Snake();
 		enemies = new Enemy[10];
 		enemies_num = 0;

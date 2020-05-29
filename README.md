@@ -25,14 +25,14 @@ dobro de pontos, mas não pode colidir com um inimigo.
 
 ## Requisitos
 
-- Java SE 8 (1.8.0) ou [superior](https://www.java.com/inc/BrowserRedirect1.jsp?locale=pt_BR). 
+- [Java JDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) (1.8.0) ou superior. 
 
 Verifique sua versão do Java e da JVM no terminal com o comando:  
 ```java -version```
 
 ## Jogar
 
-1. Na pasta ep2, compile e digite o seguinte comando no terminal:  
+1. Na pasta blacksnake, compile e digite o seguinte comando no terminal:  
 ```java -cp bin snake.Game```
 
 2. Após abrir a janela, no menu, tecle Enter para iniciar o jogo
@@ -43,7 +43,7 @@ Caso algum arquivo seja modificado é necessário compilar o jogo novamente.
 
 ## Como compilar
 
-No terminal, entre com o comando abaixo na pasta ep2:  
+No terminal, entre com o comando abaixo na pasta blacksnake:  
 ```javac -d bin/ src/snake/*.java```
 
 Se tudo ocorrer bem, nenhuma mensagem será retornada.

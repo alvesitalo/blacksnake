@@ -15,7 +15,7 @@ public class gameFile {
 	private int players_num;
 	private BufferedReader bufferedReader;
 	private BufferedWriter bufferedWriter;
-	private String inOutputFile = "src/gamefile.blacksnake";
+	private String inOutputFile = "gamefile.blacksnake";
 	private int hiscore;
 
 	public gameFile() {
@@ -46,10 +46,13 @@ public class gameFile {
 		name = stringNormalize(name);
 
 		if (players_num == 7) {
-			players_num -= 1;
-			players[players_num] = null;
+			players_num--;
+
+			if (score >= players[players_num].getScore()) {
+				players[players_num] = null;
+				players[players_num] = new Player(name, score);
+			}
 			
-			players[players_num] = new Player(name, score);
 			players_num++;
 		}
 		else {
@@ -90,12 +93,17 @@ public class gameFile {
 			bufferedReader = new BufferedReader(new FileReader(inOutputFile));
 			
 			String line = bufferedReader.readLine();
-			String name;
-			int score;
+			String name = "";
+			int score = 0;
 			
 			while (line != null) {
 				name = stringNormalize(line);
-				score = Integer.valueOf(bufferedReader.readLine());
+				
+				line = bufferedReader.readLine();
+
+				if (line != null && line != "") {
+					score = Integer.valueOf(line);
+				}
 				
 				players[players_num] = new Player(name, score);
 				players_num++;

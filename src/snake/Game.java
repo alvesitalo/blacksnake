@@ -13,7 +13,8 @@ public class Game {
 
 	public void run() {
 		window.add(gameloop);
-		window.setBounds(10, 10, GameWindow.width, GameWindow.height);
+		window.setSize(GameWindow.width, GameWindow.height);
+		window.setLocationRelativeTo(null);
 		window.setResizable(false);
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
