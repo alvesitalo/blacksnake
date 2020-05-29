@@ -2,19 +2,15 @@ package snake;
 
 public class starSnake extends Snake {
 	public starSnake(Snake s) {
-		name = "star";
-		length = s.getLength();
-		powerHitEnemies = false;
-		powerGainDoublePoints = true;
-		powerCrossBoundaries = true;
-		alive = true;
+		this.name = "star";
+		this.length = s.getLength();
+		this.powerHitEnemies = false;
+		this.powerGainDoublePoints = true;
+		this.powerCrossBoundaries = true;
+		this.alive = true;
+		this.direction = s.getDirection();
 
 		initPosition(s.getXCoords(), s.getYCoords());
-		
-		left = s.isLeft();
-		right = s.isRight();
-		up = s.isUp();
-		down = s.isDown();
 	}
 
 	public void initPosition(int[] coordsX , int[] coordsY) {

@@ -7,15 +7,14 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class Snake {
-	private ImageIcon faceLeft;
-	private ImageIcon faceRight;
-	private ImageIcon faceUp;
-	private ImageIcon faceDown;
+	private ImageIcon head;
 	private ImageIcon body;
 
 	protected String name;
 	private int bodySize = 35;
 	protected int length;
+	protected State direction;
+	
 	protected boolean powerHitEnemies;
 	protected boolean powerGainDoublePoints;
 	protected boolean powerCrossBoundaries;
@@ -23,23 +22,26 @@ public class Snake {
 	private int[] coordsX = new int[308];
 	private int[] coordsY = new int[308];
 	
-	protected boolean left = false;
-	protected boolean right = false;
-	protected boolean up = false;
-	protected boolean down = false;
-	
 	public Snake() {
-		name = "black";
+		this.name = "black";
 		resetLength();
-		powerHitEnemies = false;
-		powerGainDoublePoints = false;
-		powerCrossBoundaries = false;
-		alive = true;
+		this.powerHitEnemies = false;
+		this.powerGainDoublePoints = false;
+		this.powerCrossBoundaries = false;
+		this.alive = true;
 		initPosition();
+	}
+	
+	private enum State {
+		Left,
+		Right,
+		Up,
+		Down,
+		None;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public int getLength() {
@@ -78,20 +80,8 @@ public class Snake {
 		return coordsY[key];
 	}
 
-	public boolean isLeft() {
-		return this.left;
-	}
-
-	public boolean isRight() {
-		return this.right;
-	}
-
-	public boolean isUp() {
-		return this.up;
-	}
-
-	public boolean isDown() {
-		return this.down;
+	public State getDirection() {
+		return this.direction;
 	}
 
 	public void resetLength() {
@@ -122,83 +112,42 @@ public class Snake {
 			pos++;
 		}
 
-		right = true;
+		this.direction = State.Right;
 	}
 
 	public void stopWalking() {
-		this.left = false;
-		this.right = false;
-		this.up = false;
-		this.down = false;
+		this.direction = State.None;
 	}
 
 	public void updateWalking(int keycode) {
 		if (keycode == KeyEvent.VK_LEFT) {
-			left = true;
-			
-			if (!right) {
-				left = true;
+			if (direction != State.Right && getYPos(0) != getYPos(1)) {
+				this.direction = State.Left;
 			}
-			else {
-				left = false;
-				right = true;
-			}
-			
-			up = false;
-			down = false;
 		}
-
-		if (keycode == KeyEvent.VK_RIGHT) {
-			right = true;
-			
-			if (!left) {
-				right = true;
+		else if (keycode == KeyEvent.VK_RIGHT) {
+			if (direction != State.Left && getYPos(0) != getYPos(1)) {
+				this.direction = State.Right;
 			}
-			else {
-				right = false;
-				left = true;
-			}
-			
-			up = false;
-			down = false;
 		}
-		
-		if (keycode == KeyEvent.VK_UP) {
-			up = true;
-			
-			if (!down) {
-				up = true;
+		else if (keycode == KeyEvent.VK_UP) {
+			if (direction != State.Down && getXPos(0) != getXPos(1)) {
+				this.direction = State.Up;
 			}
-			else {
-				up = false;
-				down = true;
-			}
-			
-			left = false;
-			right = false;
 		}
-		
-		if (keycode == KeyEvent.VK_DOWN) {
-			down = true;
-			
-			if (!up) {
-				down = true;
+		else if (keycode == KeyEvent.VK_DOWN) {
+			if (direction != State.Up && getXPos(0) != getXPos(1)) {
+				this.direction = State.Down;
 			}
-			else {
-				up = true;
-				down = false;
-			}
-			
-			left = false;
-			right = false;
 		}
 	}
 
 	public void updatePosition() {
-		if (left) {
+		if (direction == State.Left) {
 			for (int i = this.length; i >= 0; i--) {
 				coordsY[i+1] = coordsY[i];
 			}
+
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
 					coordsX[i] = coordsX[i] - bodySize;
@@ -215,10 +164,11 @@ public class Snake {
 				}
 			}
 		}
-		else if (right) {
+		else if (direction == State.Right) {
 			for (int i = this.length; i >= 0; i--) {
 				coordsY[i+1] = coordsY[i];
 			}
+
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
 					coordsX[i] = coordsX[i] + bodySize;
@@ -235,10 +185,11 @@ public class Snake {
 				}
 			}
 		}
-		else if (up) {
+		else if (direction == State.Up) {
 			for (int i = this.length; i >= 0; i--) {
 				coordsX[i+1] = coordsX[i];
 			}
+
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
 					coordsY[i] = coordsY[i] - bodySize;
@@ -255,10 +206,11 @@ public class Snake {
 				}
 			}
 		}
-		else if (down) {
+		else if (direction == State.Down) {
 			for (int i = this.length; i >= 0; i--) {
 				coordsX[i+1] = coordsX[i];
 			}
+
 			for (int i = this.length; i >= 0; i--) {
 				if (i == 0) {
 					coordsY[i] = coordsY[i] + bodySize;
@@ -278,28 +230,23 @@ public class Snake {
 	}
 
 	public void updateSprites(Component c, Graphics g) {
-		for (int i = 0; i < this.length; i++) {
-			if (i == 0 && left) {
-				faceLeft = new ImageIcon("assets/snakes/" + name + "-face-left.png");
-				faceLeft.paintIcon(c, g, coordsX[i], coordsY[i]);
-			}
-			else if (i == 0 && right) {
-				faceRight = new ImageIcon("assets/snakes/" + name + "-face-right.png");
-				faceRight.paintIcon(c, g, coordsX[i], coordsY[i]);
-			}
-			else if (i == 0 && up) {
-				faceUp = new ImageIcon("assets/snakes/" + name + "-face-up.png");
-				faceUp.paintIcon(c, g, coordsX[i], coordsY[i]);
-			}
-			else if (i == 0 && down) {
-				faceDown = new ImageIcon("assets/snakes/" + name + "-face-down.png");
-				faceDown.paintIcon(c, g, coordsX[i], coordsY[i]);
-			}
+		if (direction == State.Left) {
+			head = new ImageIcon("assets/snakes/" + name + "-head-left.png");
+		}
+		else if (direction == State.Right) {
+			head = new ImageIcon("assets/snakes/" + name + "-head-right.png");
+		}
+		else if (direction == State.Up) {
+			head = new ImageIcon("assets/snakes/" + name + "-head-up.png");
+		}
+		else if (direction == State.Down) {
+			head = new ImageIcon("assets/snakes/" + name + "-head-down.png");
+		}
+		head.paintIcon(c, g, coordsX[0], coordsY[0]);
 
-			if (i != 0) {
-				body = new ImageIcon("assets/snakes/" + name + "-body.png");
-				body.paintIcon(c, g, coordsX[i], coordsY[i]);
-			}
+		body = new ImageIcon("assets/snakes/" + name + "-body.png");
+		for (int i = 1; i < this.length; i++) {
+			body.paintIcon(c, g, coordsX[i], coordsY[i]);
 		}
 	}
 }

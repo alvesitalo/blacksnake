@@ -2,19 +2,15 @@ package snake;
 
 public class kittySnake extends Snake {
 	public kittySnake(Snake s) {
-		name = "kitty";
-		length = s.getLength();
-		powerHitEnemies = true;
-		powerGainDoublePoints = false;
-		powerCrossBoundaries = false;
-		alive = true;
+		this.name = "kitty";
+		this.length = s.getLength();
+		this.powerHitEnemies = true;
+		this.powerGainDoublePoints = false;
+		this.powerCrossBoundaries = false;
+		this.alive = true;
+		this.direction = s.getDirection();
 
 		initPosition(s.getXCoords(), s.getYCoords());
-		
-		left = s.isLeft();
-		right = s.isRight();
-		up = s.isUp();
-		down = s.isDown();
 	}
 	
 	public void initPosition(int[] coordsX , int[] coordsY) {

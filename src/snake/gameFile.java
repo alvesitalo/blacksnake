@@ -15,7 +15,7 @@ public class gameFile {
 	private int players_num;
 	private BufferedReader bufferedReader;
 	private BufferedWriter bufferedWriter;
-	private String inOutputFile = "assets/game/gamefile.blacksnake";
+	private String inOutputFile = "src/gamefile.blacksnake";
 	private int hiscore;
 
 	public gameFile() {

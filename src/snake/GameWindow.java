@@ -42,10 +42,10 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 	private boolean running;
 	private boolean openPopup;
-	private State state;
+	private State screen;
 	
 	public GameWindow() {
-		state = State.Menu;
+		screen = State.Menu;
 		initItems();
 		initWorld();
 		addKeyListener(this);
@@ -57,7 +57,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 	@Override
 	public void run() {
-		while(running) {
+		while (running) {
 			try {
 				Thread.sleep(delay);
 				snake.updatePosition();
@@ -94,7 +94,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		enemies_num = 0;
 		food = new Fruit();
 		food2 = null;
-		delay = 180;
+		delay = 170;
 		score = 0;
 		highscore = file.getHighScore();
 	}
@@ -103,28 +103,26 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		Graphics2D g2 = (Graphics2D) g;
 		new gameGraphics(g2);
 
-		if (state == State.Menu) {
+		if (screen == State.Menu) {
 			new Menu().show(this, g2);
 		}
-		
-		if (state == State.Highscore) {
+		else if (screen == State.Highscore) {
 			new MenuHighScores(file).show(this, g2);
 		}
-
-		if (state == State.Game) {
+		else if (screen == State.Game) {
 			initGameGUI(g2);
 
 			for (int a = 0; a < enemies_num; a++) {
+				enemies[a].showEnemy(this, g2);
+
 				if (enemies[a].getXPos() == snake.getXPos(0) && enemies[a].getYPos() == snake.getYPos(0)) {
 					if (!snake.canHitEnemies()) {
 						snake.die();
 					}
 				}
-
-				enemies[a].showEnemy(this, g2);
 			}
 			
-			for (int b = 1; b < snake.getLength(); b++) {
+			for (int b = 2; b < snake.getLength(); b++) {
 				if (snake.getXPos(b) == snake.getXPos(0) && snake.getYPos(b) == snake.getYPos(0)) {
 					snake.die();
 				}
@@ -132,7 +130,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 			if (!snake.isAlive()) {
 				snake.stopWalking();
-				state = State.GameOver;
+				screen = State.GameOver;
 
 				try {
 					Thread.sleep(1500);
@@ -148,7 +146,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 			snake.updateSprites(this, g2);
 		}
 
-		if (state == State.GameOver) {
+		if (screen == State.GameOver) {
 			new GameOver(score, highscore).show(this, g2);
 			
 			if (!openPopup) {
@@ -280,31 +278,29 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keycode = e.getKeyCode();
+		int keyboard = e.getKeyCode();
+		int enter = KeyEvent.VK_ENTER;
+		int space = KeyEvent.VK_SPACE;
 
-		if (keycode == KeyEvent.VK_ENTER && state == State.Menu) {
-			state = State.Game;
+		if (screen == State.Menu && keyboard == enter) {
+			screen = State.Game;
 			initWorld();
 		}
-		
-		if (keycode == KeyEvent.VK_SPACE && state == State.Menu) {
-			state = State.Highscore;
+		else if (screen == State.Menu && keyboard == space) {
+			screen = State.Highscore;
 		}
-
-		if (keycode == KeyEvent.VK_ENTER && state == State.Highscore) {
-			state = State.Menu;
+		else if (screen == State.Highscore && keyboard == enter) {
+			screen = State.Menu;
 		}
-
-		if (keycode == KeyEvent.VK_ENTER && state == State.GameOver) {
-			state = State.Menu;
+		else if (screen == State.GameOver && keyboard == enter) {
+			screen = State.Menu;
 		}
-
-		if (e.getKeyCode() == KeyEvent.VK_SPACE && state == State.GameOver) {
-			state = State.Game;
+		else if (screen == State.GameOver && keyboard == space) {
+			screen = State.Game;
 			initWorld();
 		}
 
-		snake.updateWalking(e.getKeyCode());
+		snake.updateWalking(keyboard);
 	}
 
 	@Override

@@ -32,7 +32,7 @@ Verifique sua versão do Java e da JVM no terminal com o comando:
 
 ## Jogar
 
-1. Na pasta ep2, digite o seguinte comando no terminal:  
+1. Na pasta ep2, compile e digite o seguinte comando no terminal:  
 ```java -cp bin snake.Game```
 
 2. Após abrir a janela, no menu, tecle Enter para iniciar o jogo
@@ -50,7 +50,7 @@ Se tudo ocorrer bem, nenhuma mensagem será retornada.
 
 ## Créditos
 
-Frutas e outros ícones [FontAwesome](https://fontawesome.com/)
+Frutas e outros ícones por [FontAwesome](https://fontawesome.com/)
 
 
 # EP2 - OO 2019.2 (UnB - Gama)
