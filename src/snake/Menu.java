@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 
 import java.awt.Component;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Font;
 
 public class Menu {
@@ -14,8 +14,8 @@ public class Menu {
 	private String phrase;
 	private String phrase2;
 	
-	private Font font1;
-	private Font font2;
+	private gameFont font1;
+	private gameFont font2;
 	private int width;
 	private int height;
 
@@ -27,23 +27,29 @@ public class Menu {
 		phrase2 = "space to see highscore";
 		width = GameWindow.width;
 		height = GameWindow.height;
+		initItems();
 	}
 
-	public void show(Component c, Graphics g) {
+	private void initItems() {
+		font1 = new gameFont("assets/fonts/bradley-gratis.ttf");
+		font2 = new gameFont("assets/fonts/Mops.ttf");
+	}
+
+	public void show(Component c, Graphics2D g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, width, height);
 
 		g.setColor(Color.white);
 
-		font1 = new Font("Bradley Gratis", Font.PLAIN, 183);
-		int a = new gameFont("assets/fonts/bradley-gratis.ttf").getMetrics(g, font1);
-		g.setFont(font1);
+		Font bradley = new Font("Bradley Gratis", Font.PLAIN, 183);
+		int a = font1.getMetrics(g, bradley);
+		g.setFont(bradley);
 		g.drawString(title, 140, 105 + (a - 12));
 		logo.paintIcon(c, g, 180, 300);
 
-		font2 = new Font("Mops", Font.PLAIN, 60);
-		int b = new gameFont("assets/fonts/Mops.ttf").getMetrics(g, font2);
-		g.setFont(font2);
+		Font mops = new Font("Mops", Font.PLAIN, 60);
+		int b = font2.getMetrics(g, mops);
+		g.setFont(mops);
 		g.drawString(subtitle, 410, 30 + (b - 12));
 
 		g.setFont(new Font("Mops", Font.PLAIN, 48));

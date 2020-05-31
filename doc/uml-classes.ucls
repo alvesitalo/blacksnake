@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="false" automaticImage="PNG" always-add-relationships="false" 
+<class-diagram version="1.2.4" icons="false" automaticImage="PNG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="snake.GameOver" project="ep2" file="/ep2/src/snake/GameOver.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="snake.GameOver" project="blacksnake" file="/blacksnake/src/snake/GameOver.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1187" y="686"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="snake.Player" project="ep2" file="/ep2/src/snake/Player.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="snake.Player" project="blacksnake" file="/blacksnake/src/snake/Player.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1349" y="1743"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -20,8 +20,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="snake.bigFruit" project="ep2" file="/ep2/src/snake/bigFruit.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="snake.bigFruit" project="blacksnake" file="/blacksnake/src/snake/bigFruit.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="460" y="1847"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -29,8 +29,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="snake.gameFile" project="ep2" file="/ep2/src/snake/gameFile.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="snake.gameFile" project="blacksnake" file="/blacksnake/src/snake/gameFile.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1221" y="1333"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -38,8 +38,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="snake.GameWindow" project="ep2" file="/ep2/src/snake/GameWindow.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="snake.GameWindow" project="blacksnake" 
+    file="/blacksnake/src/snake/GameWindow.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="637" width="191" x="749" y="457"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,8 +47,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="snake.Fruit" project="ep2" file="/ep2/src/snake/Fruit.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="snake.Fruit" project="blacksnake" file="/blacksnake/src/snake/Fruit.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="684" y="1396"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,8 +56,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="snake.Enemy" project="ep2" file="/ep2/src/snake/Enemy.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="snake.Enemy" project="blacksnake" file="/blacksnake/src/snake/Enemy.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="392" y="1356"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -65,8 +65,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="snake.Menu" project="ep2" file="/ep2/src/snake/Menu.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="snake.Menu" project="blacksnake" file="/blacksnake/src/snake/Menu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1423" y="480"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -74,8 +74,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="snake.Snake" project="ep2" file="/ep2/src/snake/Snake.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="snake.Snake" project="blacksnake" file="/blacksnake/src/snake/Snake.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="972" y="1589"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -83,8 +83,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="snake.MenuHighScores" project="ep2" file="/ep2/src/snake/MenuHighScores.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="snake.MenuHighScores" project="blacksnake" 
+    file="/blacksnake/src/snake/MenuHighScores.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1460" y="1334"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -92,7 +92,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="snake.starSnake" project="ep2" file="/ep2/src/snake/starSnake.java" 
+  <class id="11" language="java" name="snake.starSnake" project="blacksnake" file="/blacksnake/src/snake/starSnake.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="855" y="2152"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
@@ -101,7 +101,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="snake.bombFruit" project="ep2" file="/ep2/src/snake/bombFruit.java" 
+  <class id="12" language="java" name="snake.bombFruit" project="blacksnake" file="/blacksnake/src/snake/bombFruit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="596" y="1848"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
@@ -110,8 +110,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="snake.decreaseFruit" project="ep2" file="/ep2/src/snake/decreaseFruit.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="13" language="java" name="snake.decreaseFruit" project="blacksnake" 
+    file="/blacksnake/src/snake/decreaseFruit.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="755" y="1849"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -119,8 +119,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="snake.gameGraphics" project="ep2" file="/ep2/src/snake/gameGraphics.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="snake.gameGraphics" project="blacksnake" 
+    file="/blacksnake/src/snake/gameGraphics.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="494" y="455"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -128,8 +128,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="snake.gameFont" project="ep2" file="/ep2/src/snake/gameFont.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="snake.gameFont" project="blacksnake" file="/blacksnake/src/snake/gameFont.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1437" y="885"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -137,8 +137,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="snake.kittySnake" project="ep2" file="/ep2/src/snake/kittySnake.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="snake.kittySnake" project="blacksnake" 
+    file="/blacksnake/src/snake/kittySnake.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1063" y="2153"/>    
     <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -146,8 +146,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="snake.Game" project="ep2" file="/ep2/src/snake/Game.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="snake.Game" project="blacksnake" file="/blacksnake/src/snake/Game.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="140" width="129" x="773" y="152"/>    
     <display autosize="false" stereotype="false" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -155,158 +155,219 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="18">    
-    <bendpoint x="682" y="1058"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="19" name="food2">        
-        <position height="17" width="35" x="644" y="1119"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="15" width="23" x="688" y="1120"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="21">    
-    <bendpoint x="495" y="634"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <dependency id="22">    
-    <bendpoint x="1086" y="486"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="23">    
-    <bendpoint x="968" y="1053"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="24" name="snake">        
-        <position height="20" width="43" x="924" y="1130"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="18" width="27" x="974" y="1135"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="27" name="players">        
-        <position height="20" width="50" x="1243" y="1571"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="1303" y="1571"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <association id="31">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="32" name="gameloop">        
-        <position height="20" width="64" x="774" y="410"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="15" width="23" x="846" y="413"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <bendpoint x="395" y="1048"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="35" name="enemies">        
-        <position height="17" width="48" x="337" y="1120"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="2147483647">        
-        <position height="15" width="21" x="406" y="1124"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="38" name="players">        
-        <position height="20" width="50" x="1342" y="1572"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="2147483647">        
-        <position height="18" width="25" x="1401" y="1575"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="40">    
-    <bendpoint x="825" y="1140"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="41" name="food">        
-        <position height="20" width="33" x="792" y="1125"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="18" width="27" x="829" y="1129"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <dependency id="44">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="45">    
+  <class id="18" language="java" name="snake.gameSound" project="blacksnake" file="/blacksnake/src/snake/gameSound.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="338" y="759"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="19">    
     <bendpoint x="1213" y="1091"/>    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="46" name="file">        
+      <attribute id="20" name="file">        
         <position height="20" width="25" x="1184" y="1141"/>      
       </attribute>      
-      <multiplicity id="47" minimum="0" maximum="1">        
+      <multiplicity id="21" minimum="0" maximum="1">        
         <position height="15" width="23" x="1224" y="1143"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="48">    
+  <association id="22">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="23" name="gameloop">        
+        <position height="20" width="64" x="774" y="410"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="15" width="23" x="846" y="413"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <bendpoint x="573" y="806"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="26" name="snakeChangedSound">        
+        <position height="20" width="131" x="514" y="777"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="18" width="27" x="441" y="765"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <bendpoint x="395" y="1048"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="29" name="enemies">        
+        <position height="17" width="48" x="337" y="1120"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="406" y="1124"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="968" y="1053"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="32" name="snake">        
+        <position height="20" width="43" x="924" y="1130"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="18" width="27" x="974" y="1135"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <association id="35">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="36" name="players">        
+        <position height="20" width="50" x="1243" y="1571"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="2147483647">        
+        <position height="15" width="21" x="1303" y="1571"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="39">    
+    <bendpoint x="559" y="864"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="40" name="hitFruitSound">        
+        <position height="20" width="85" x="528" y="827"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="18" width="27" x="449" y="794"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="44">    
+    <bendpoint x="581" y="752"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="45" name="gameOverSound">        
+        <position height="20" width="103" x="507" y="729"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="1">        
+        <position height="18" width="27" x="468" y="737"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <bendpoint x="682" y="1058"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="48" name="food2">        
+        <position height="17" width="35" x="644" y="1119"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="1">        
+        <position height="15" width="23" x="688" y="1120"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="50">    
     <bendpoint x="1279" y="975"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <generalization id="49">    
+  <association id="51">    
+    <bendpoint x="825" y="1140"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="52" name="food">        
+        <position height="20" width="33" x="792" y="1125"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="18" width="27" x="829" y="1129"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="54">    
+    <bendpoint x="588" y="1696"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <generalization id="56">    
     <bendpoint x="660" y="1709"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <dependency id="50">    
-    <end type="SOURCE" refId="10"/>    
+  <association id="57">    
+    <bendpoint x="572" y="691"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="58" name="screenChanged">        
+        <position height="20" width="98" x="442" y="674"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="1">        
+        <position height="18" width="27" x="430" y="708"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="60">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <generalization id="51">    
+  <dependency id="61">    
+    <bendpoint x="495" y="634"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="62">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="63" name="players">        
+        <position height="20" width="50" x="1342" y="1572"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1401" y="1575"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="65">    
+    <bendpoint x="1086" y="486"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="66">    
     <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="52">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <generalization id="53">    
-    <bendpoint x="588" y="1696"/>    
-    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="false" package="false" initial-value="false" signature="true" 

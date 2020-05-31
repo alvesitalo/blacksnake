@@ -43,7 +43,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	private State screen;
 	private boolean openPopup;
 	private Random random = new Random();
-	
+
+	private gameSound screenChanged;
+	private gameSound hitFruitSound;
+	private gameSound snakeChangedSound;
+	private gameSound gameOverSound;
+
 	public GameWindow() {
 		screen = State.Menu;
 		initItems();
@@ -78,10 +83,19 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	}
 	
 	private void initItems() {
-		running = true;
+		new gameFont("assets/fonts/Mops.ttf");
+		new gameFont("assets/fonts/bradley-gratis.ttf");
+
+		screenChanged = new gameSound("assets/sounds/screen_changed.wav");
+		hitFruitSound = new gameSound("assets/sounds/fruit.wav");
+		snakeChangedSound = new gameSound("assets/sounds/new_snake.wav");
+		gameOverSound = new gameSound("assets/sounds/game_over.wav");
+
 		scoreIcon = new ImageIcon("assets/game/score-icon.png");
 		hiscoreIcon = new ImageIcon("assets/game/highscore-icon.png");
 		gameArea = new ImageIcon("assets/game/game-frame.png");
+
+		running = true;
 		boundary[0] = 70;
 		boundary[1] = boundary[0] + (gameArea.getIconWidth() - 10) - gridSize;
 		boundary[2] = 140;
@@ -134,6 +148,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 				screen = State.GameOver;
 
 				try {
+					gameOverSound.play();
 					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -174,37 +189,34 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g2.dispose();
 	}
 
-	private void initGameGUI(Graphics2D g2) {
-		g2.setColor(Color.white);
-		g2.fillRect(0, 0, width, height);
+	private void initGameGUI(Graphics2D g) {
+		g.setColor(Color.white);
+		g.fillRect(0, 0, width, height);
 		
-		g2.setColor(Color.black);
+		g.setColor(Color.black);
+		g.setFont(new Font("Mops", Font.PLAIN, 65));
 
-		new gameFont("assets/fonts/Mops.ttf");
-		g2.setFont(new Font("Mops", Font.PLAIN, 65));
+		scoreIcon.paintIcon(this, g, gridSize * 2, 50);
+		g.drawString("" + score, 125, 60 + gridSize);
 
-		scoreIcon.paintIcon(this, g2, gridSize * 2, 50);
-		g2.drawString("" + score, 125, 60 + gridSize);
+		hiscoreIcon.paintIcon(this, g, 780, 50);
+		g.drawString("" + highscore, 700, 60 + gridSize);
 
-		hiscoreIcon.paintIcon(this, g2, 780, 50);
-		g2.drawString("" + highscore, 700, 60 + gridSize);
+		g.setFont(new Font("Bradley Gratis", Font.PLAIN, 70));
+		g.drawString(snake.getName(), 400, 50 + (gridSize + 10));
 
-		new gameFont("assets/fonts/bradley-gratis.ttf");
-		g2.setFont(new Font("Bradley Gratis", Font.PLAIN, 70));
-		g2.drawString(snake.getName(), 400, 50 + (gridSize + 10));
-
-		gameArea.paintIcon(this, g2, boundary[0] - 5, boundary[2] - 5);
+		gameArea.paintIcon(this, g, boundary[0] - 5, boundary[2] - 5);
 	}
 
 	private void collisionWithFruitsEvents() {
 		if (snakeHitFruit(food) || snakeHitFruit(food2)) {
-			if (score >= 15) {
-				if (score % 3 == 0 && delay > 80) {
+			if (score >= 10) {
+				if (score % 10 == 8 && delay > 80) {
 					delay -= 10;
 				}
 			}
 
-			if (score >= 30 && enemies_num < 10) {
+			if (score >= 40 && enemies_num < 10) {
 				if (score % 3 == 0) {
 					enemies[enemies_num] = new Enemy("spike");
 					enemies_num++;
@@ -219,12 +231,16 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 				if (fruit.getName() == "bomb") {
 					snake.die();
 				}
-				else if (fruit.getName() == "big") {
+				else if (fruit.getName() == "big" && snake.getName() != "kitty") {
 					snake = new kittySnake(snake);
+					snakeChangedSound.play();
 				}
-				else if (fruit.getName() == "decrease") {
-					snake.resetLength();
+				else if (fruit.getName() == "decrease" && snake.getName() != "star") {
 					snake = new starSnake(snake);
+					snakeChangedSound.play();
+				}
+				else {
+					hitFruitSound.play();
 				}
 				
 				if (snake.canGainDoublePoints()) {
@@ -234,8 +250,12 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 					score += fruit.getPoints();
 				}
 				
-				if (fruit.getName() != "decrease")
-				snake.increaseLength();
+				if (fruit.getName() != "decrease") {
+					snake.increaseLength();
+				}
+				else {
+					snake.resetLength();
+				}
 				
 				randFruits();
 				return true;
@@ -285,19 +305,24 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 
 		if (screen == State.Menu && keyboard == enter) {
 			screen = State.Game;
+			screenChanged.play();
 			initWorld();
 		}
 		else if (screen == State.Menu && keyboard == space) {
 			screen = State.Highscore;
+			screenChanged.play();
 		}
 		else if (screen == State.Highscore && keyboard == enter) {
 			screen = State.Menu;
+			screenChanged.play();
 		}
 		else if (screen == State.GameOver && keyboard == enter) {
 			screen = State.Menu;
+			screenChanged.play();
 		}
 		else if (screen == State.GameOver && keyboard == space) {
 			screen = State.Game;
+			screenChanged.play();
 			initWorld();
 		}
 
