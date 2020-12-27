@@ -50,5 +50,5 @@ Se tudo ocorrer bem, nenhuma mensagem será retornada.
 
 ## Créditos
 
-Frutas e outros ícones por [FontAwesome](https://fontawesome.com/)
-Sons e efeitos adicionais por [ZAPSPLAT](https://www.zapsplat.com)
+Frutas e outros ícones por [FontAwesome](https://fontawesome.com/)  
+Sons e efeitos adicionais por [ZAPSPLAT](https://www.zapsplat.com).
