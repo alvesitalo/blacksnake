@@ -83,7 +83,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 	}
 	
 	private void initItems() {
-		new gameFont("assets/fonts/Mops.ttf");
+		new gameFont("assets/fonts/mops.ttf");
 		new gameFont("assets/fonts/bradley-gratis.ttf");
 
 		screenChanged = new gameSound("assets/sounds/screen_changed.wav");
@@ -194,7 +194,7 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g.fillRect(0, 0, width, height);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("Mops", Font.PLAIN, 65));
+		g.setFont(new Font("mops", Font.PLAIN, 65));
 
 		scoreIcon.paintIcon(this, g, gridSize * 2, 50);
 		g.drawString("" + score, 125, 60 + gridSize);

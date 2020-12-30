@@ -32,7 +32,7 @@ public class Menu {
 
 	private void initItems() {
 		font1 = new gameFont("assets/fonts/bradley-gratis.ttf");
-		font2 = new gameFont("assets/fonts/Mops.ttf");
+		font2 = new gameFont("assets/fonts/mops.ttf");
 	}
 
 	public void show(Component c, Graphics2D g) {
@@ -47,12 +47,12 @@ public class Menu {
 		g.drawString(title, 140, 105 + (a - 12));
 		logo.paintIcon(c, g, 180, 300);
 
-		Font mops = new Font("Mops", Font.PLAIN, 60);
+		Font mops = new Font("mops", Font.PLAIN, 60);
 		int b = font2.getMetrics(g, mops);
 		g.setFont(mops);
 		g.drawString(subtitle, 410, 30 + (b - 12));
 
-		g.setFont(new Font("Mops", Font.PLAIN, 48));
+		g.setFont(new Font("mops", Font.PLAIN, 48));
 		g.drawString(phrase, 335, 570 + (b - 12));
 		g.drawString(phrase2, 260, 610 + (b - 12));
 	}

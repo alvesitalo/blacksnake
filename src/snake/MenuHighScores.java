@@ -39,7 +39,7 @@ public class MenuHighScores {
 
 	private void initItems() {
 		font1 = new gameFont("assets/fonts/bradley-gratis.ttf");
-		font2 = new gameFont("assets/fonts/Mops.ttf");
+		font2 = new gameFont("assets/fonts/mops.ttf");
 	}
 
 	public void show(Component c, Graphics2D g) {
@@ -53,12 +53,12 @@ public class MenuHighScores {
 		g.setFont(bradley);
 		g.drawString(title, 280, 75 + (a - 5));
 
-		Font mops = new Font("Mops", Font.PLAIN, 36);
+		Font mops = new Font("mops", Font.PLAIN, 36);
 		int b = font2.getMetrics(g, mops);
 		g.setFont(mops);
 		g.drawString(subtitle, 385, 165 + (b - 5));
 
-		Font mops2 = new Font("Mops", Font.PLAIN, 50);
+		Font mops2 = new Font("mops", Font.PLAIN, 50);
 		int d = font2.getMetrics(g, mops2);
 		g.setFont(mops2);
 		g.drawString(column, 170, 255 + (d - 15));
