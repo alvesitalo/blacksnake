@@ -53,12 +53,12 @@ public class MenuHighScores {
 		g.setFont(bradley);
 		g.drawString(title, 280, 75 + (a - 5));
 
-		Font mops = new Font("mops", Font.PLAIN, 36);
+		Font mops = new Font("Mops", Font.PLAIN, 36);
 		int b = font2.getMetrics(g, mops);
 		g.setFont(mops);
 		g.drawString(subtitle, 385, 165 + (b - 5));
 
-		Font mops2 = new Font("mops", Font.PLAIN, 50);
+		Font mops2 = new Font("Mops", Font.PLAIN, 50);
 		int d = font2.getMetrics(g, mops2);
 		g.setFont(mops2);
 		g.drawString(column, 170, 255 + (d - 15));
@@ -67,12 +67,10 @@ public class MenuHighScores {
 		snakeIcon.paintIcon(c, g, 355, 340);
 		
 		g.setFont(mops);
-		int line = 0;
 
-		for(int i = 0; i < players_num; i++) {
-			g.drawString(players[i].getName(), 170, (325 + 20) + (26 * line) + (15 * line));
-			g.drawString("" + players[i].getScore(), 630, (325 + 20) + (26 * line) + (15 * line));
-			line++;
+		for(int n = 0; n < players_num; n++) {
+			g.drawString(players[n].getName(), 170, (325 + 20) + (26 * n) + (15 * n));
+			g.drawString(players[n].getScore() + "", 630, (325 + 20) + (26 * n) + (15 * n));
 		}
 		
 		g.setFont(mops);

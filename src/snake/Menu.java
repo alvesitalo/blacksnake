@@ -13,6 +13,7 @@ public class Menu {
 	private ImageIcon logo;
 	private String phrase;
 	private String phrase2;
+	private String credits;
 	
 	private gameFont font1;
 	private gameFont font2;
@@ -25,6 +26,7 @@ public class Menu {
 		logo = new ImageIcon("assets/game/snake-logo.png");
 		phrase = "enter to start";
 		phrase2 = "space to see highscore";
+		credits = "\u00a9 Italo Alves";
 		width = GameWindow.width;
 		height = GameWindow.height;
 		initItems();
@@ -47,13 +49,16 @@ public class Menu {
 		g.drawString(title, 140, 105 + (a - 12));
 		logo.paintIcon(c, g, 180, 300);
 
-		Font mops = new Font("mops", Font.PLAIN, 60);
+		Font mops = new Font("Mops", Font.PLAIN, 60);
 		int b = font2.getMetrics(g, mops);
 		g.setFont(mops);
 		g.drawString(subtitle, 410, 30 + (b - 12));
 
-		g.setFont(new Font("mops", Font.PLAIN, 48));
+		g.setFont(new Font("Mops", Font.PLAIN, 48));
 		g.drawString(phrase, 335, 570 + (b - 12));
 		g.drawString(phrase2, 260, 610 + (b - 12));
+
+		g.setFont(new Font("Mops", Font.PLAIN, 22));
+		g.drawString(credits, 808, 638 + (b - 12));
 	}
 }

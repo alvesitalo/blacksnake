@@ -194,13 +194,13 @@ public class GameWindow extends JPanel implements KeyListener, ActionListener, R
 		g.fillRect(0, 0, width, height);
 		
 		g.setColor(Color.black);
-		g.setFont(new Font("mops", Font.PLAIN, 65));
+		g.setFont(new Font("Mops", Font.PLAIN, 65));
 
 		scoreIcon.paintIcon(this, g, gridSize * 2, 50);
-		g.drawString("" + score, 125, 60 + gridSize);
+		g.drawString(score + "", 125, 60 + gridSize);
 
 		hiscoreIcon.paintIcon(this, g, 780, 50);
-		g.drawString("" + highscore, 700, 60 + gridSize);
+		g.drawString(highscore + "", 700, 60 + gridSize);
 
 		g.setFont(new Font("Bradley Gratis", Font.PLAIN, 70));
 		g.drawString(snake.getName(), 400, 50 + (gridSize + 10));
